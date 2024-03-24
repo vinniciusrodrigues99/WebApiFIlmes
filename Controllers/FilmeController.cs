@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmesAPI2.Models;
 using FilmesAPI2.Data;
+using FilmesAPI2.Data.Dtos;
+using AutoMapper;
 namespace FilmesAPI2.Controllers
 {
 	[ApiController]
@@ -9,18 +11,22 @@ namespace FilmesAPI2.Controllers
 	{
 		//private static List<Filme> filmes = new List<Filme>();
 		//private static int id = 0;
-		private FilmeContext _context;
+		private FilmeContext _context; //: Este é um campo privado na classe FilmeController que armazenará uma instância do contexto do banco de dados FilmeContext.
+		private IMapper _mapper;
 
-		public FilmeController(FilmeContext context)
+
+		public FilmeController(FilmeContext context, IMapper mapper)
 		{
 			_context = context;
+			_mapper = mapper;
 		}
 
 		[HttpPost] // a partir desse momento, o método é um POST
-		public  IActionResult AdicionaFilme([FromBody] Filme filme) //A notação [FromBody] indica que o parâmetro filme será passado no corpo da requisição
+		public  IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDTO) //A notação [FromBody] indica que o parâmetro filme será passado no corpo da requisição
 		{
 			//filme.Id = ++id;
 			//filmes.Add(filme);  // Adiciona um filme
+			Filme filme = _mapper.Map<Filme>(filmeDTO);
 			_context.Filmes.Add(filme);
 			_context.SaveChanges();
 			Console.WriteLine(filme.Titulo);
@@ -45,3 +51,4 @@ namespace FilmesAPI2.Controllers
 
 	}
 }
+//Em resumo, este código está injetando o contexto do banco de dados FilmeContext na classe FilmeController por meio do construtor, permitindo que a classe FilmeController interaja com o banco de dados para buscar e manipular dados relacionados a filmes. Esse padrão de injeção de dependência é comum em aplicativos ASP.NET Core e ajuda a promover a modularidade e a testabilidade do código.

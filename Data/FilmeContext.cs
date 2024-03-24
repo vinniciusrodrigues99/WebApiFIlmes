@@ -9,6 +9,6 @@ namespace FilmesAPI2.Data
 		{
 
 		}
-		public DbSet<Filme> Filmes { get; set; } //USado para representar uma tabela ou coleção de entidades no banco de dados
+		public DbSet<Filme> Filmes { get; set; } //Usado para representar uma tabela ou coleção de entidades no banco de dados
 	}
 }

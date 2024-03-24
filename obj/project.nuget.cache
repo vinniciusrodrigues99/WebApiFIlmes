@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "sLraNj34jRP4zeNLsfoHfW2eeM1NFMq4JUH4jLez3rFRVxACyWdN6bqz3QMuJabc+yzCfDm8UYnz5q0Rkd5iOg==",
+  "dgSpecHash": "0QFu8Q+oTmvbHL/pwamT0Aqb1xcZqHWvW4RyFzvLNMLjWXROFiVbquh4ncmCBfCNO2HYMQ4S+z0B2ooap99Gzw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ModalGR\\Desktop\\Dev\\.NET\\FilmesAPI2\\FilmesAPI2\\FilmesAPI2.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ModalGR\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\ModalGR\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\ModalGR\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\ModalGR\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\ModalGR\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.10\\microsoft.entityframeworkcore.6.0.10.nupkg.sha512",
     "C:\\Users\\ModalGR\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.10\\microsoft.entityframeworkcore.abstractions.6.0.10.nupkg.sha512",
     "C:\\Users\\ModalGR\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.10\\microsoft.entityframeworkcore.analyzers.6.0.10.nupkg.sha512",
