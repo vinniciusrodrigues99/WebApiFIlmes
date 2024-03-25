@@ -39,3 +39,6 @@ C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Microso
 C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\obj\Debug\net6.0\FilmesAPI2.sourcelink.json

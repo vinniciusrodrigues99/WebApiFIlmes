@@ -3,6 +3,7 @@ using FilmesAPI2.Models;
 using FilmesAPI2.Data;
 using FilmesAPI2.Data.Dtos;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 namespace FilmesAPI2.Controllers
 {
 	[ApiController]
@@ -39,14 +40,75 @@ namespace FilmesAPI2.Controllers
 			return _context.Filmes.Skip(skip).Take(take);
 		}
 
-		[HttpGet ("{id}")] //EndPoint que retorna um filme por id
+		[HttpGet("{id}")] //EndPoint que retorna um filme por id
 		public IActionResult RetornaFilmePorID(int id) // a notaçaõ {id} indica que o parâmetro id será passado na URL
 		{
 			var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
-			if(filme == null)
-			return NotFound(); //Neste caso será retornado o status code 404 - Not Found
-			else
+			if (filme == null)
+				return NotFound(); //Neste caso será retornado o status code 404 - Not Found
+			var filmeDTO = _mapper.Map<ReadFilmeDto>(filme);
 			return Ok(filme); //Neste caso será retornado o status code 200 e o filme
+		}
+		[HttpPut("{id}")] 
+		public IActionResult AtualizaFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
+		{
+			var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
+			if (filme == null)
+			{
+				return NotFound();
+			}
+
+			if (filmeDto.Titulo != null)
+			{
+				filme.Titulo = filmeDto.Titulo;
+			}
+
+			if (filmeDto.Diretor != null)
+			{
+				filme.Diretor = filmeDto.Diretor;
+			}
+
+			if (filmeDto.Duracao != null) // Certifique-se de que filmeDto.Duracao é um double?
+			{
+				filme.Duracao = filmeDto.Duracao;
+			}
+
+			if (filmeDto.Genero != null)
+			{
+				filme.Genero = filmeDto.Genero;
+			}
+			_context.SaveChanges();
+			return NoContent();
+			//_mapper.Map(filmeDto, filme); // Atualiza o filme com os dados do filmeDto
+			 // Retorna o status code 204 - No Content
+		}
+		[HttpPatch("{id}")]
+		public IActionResult AtualizarFilmeParcial(int id, JsonPatchDocument<UpdateFilmeDto> patch)  //Atualizando através da biblioteca NewtonSoftJson
+		{
+			var filme = _context.Filmes.FirstOrDefault(filmes => filmes.Id == id);
+			if (filme == null)
+				return NotFound();
+			var filmeParaAtualizar = _mapper.Map<UpdateFilmeDto>(filme);
+			patch.ApplyTo(filmeParaAtualizar, ModelState);
+			if(!TryValidateModel(filmeParaAtualizar))
+			{
+				return ValidationProblem(ModelState);
+			}
+			_mapper.Map(filmeParaAtualizar, filme);
+			_context.SaveChanges();
+			return NoContent();
+		}
+		[HttpDelete("{id}")]
+		public IActionResult DeletaFilmes(int id)
+		{
+			var filme = _context.Filmes.FirstOrDefault(filmes => filmes.Id == id);
+			if(filme == null)
+			{
+				return NotFound();
+			}
+			_context.Filmes.Remove(filme);
+			_context.SaveChanges();
+			return NoContent();
 		}
 
 	}
