@@ -42,3 +42,9 @@ C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Pomelo.
 C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\obj\Debug\net6.0\FilmesAPI2.sourcelink.json
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\bin\Debug\net6.0\FilmesAPI2.xml
+C:\Users\ModalGR\Desktop\Dev\.NET\FilmesAPI2\FilmesAPI2\obj\Debug\net6.0\FilmesAPI2.xml

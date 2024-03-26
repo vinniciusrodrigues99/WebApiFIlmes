@@ -4,6 +4,7 @@ using FilmesAPI2.Data;
 using FilmesAPI2.Data.Dtos;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
+
 namespace FilmesAPI2.Controllers
 {
 	[ApiController]
@@ -22,7 +23,14 @@ namespace FilmesAPI2.Controllers
 			_mapper = mapper;
 		}
 
+		/// <summary>
+		/// Adiciona um filme ao banco de dados
+		/// </summary>
+		/// <param name="filmeDTO"> Objeto com os campos necessários para criação de um filme </param>
+		/// <returns> IActionResult </returns>
+		/// <response code ="201"> Caso inserção seja feita com sucesso</response>
 		[HttpPost] // a partir desse momento, o método é um POST
+		[ProducesResponseType(201)]
 		public  IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDTO) //A notação [FromBody] indica que o parâmetro filme será passado no corpo da requisição
 		{
 			//filme.Id = ++id;
@@ -34,10 +42,19 @@ namespace FilmesAPI2.Controllers
 			Console.WriteLine(filme.Duracao);
 			return CreatedAtAction(nameof(RetornaFilmePorID), new { id = filme.Id }, filme);
 		}
+
+		/// <summary>
+		/// Busca os filmes no banco de dados
+		/// </summary>
+		/// <param name="id"> Parâmetro necessário para a busca do filme </param>
+		/// <returns> IActionResult </returns>
+		/// <response code ="200"> Caso a requisição retorne um filme com sucesso </response>
+	
 		[HttpGet] // a partir desse momento, o método é um GET.
-		public IEnumerable<Filme> RetornaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
+		public IEnumerable<ReadFilmeDto> RetornaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50) //A notação [FromQuery] indica que os parâmetros skip e take serão passados na URL
 		{
-			return _context.Filmes.Skip(skip).Take(take);
+			//return _context.Filmes.Skip(skip).Take(take);
+			return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take));
 		}
 
 		[HttpGet("{id}")] //EndPoint que retorna um filme por id
@@ -46,8 +63,8 @@ namespace FilmesAPI2.Controllers
 			var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
 			if (filme == null)
 				return NotFound(); //Neste caso será retornado o status code 404 - Not Found
-			var filmeDTO = _mapper.Map<ReadFilmeDto>(filme);
-			return Ok(filme); //Neste caso será retornado o status code 200 e o filme
+			var filmeDTO = _mapper.Map<ReadFilmeDto>(filme); // Converte o filme para um ReadFilmeDto
+			return Ok(filmeDTO); //Neste caso será retornado o status code 200 e o filmeDto
 		}
 		[HttpPut("{id}")] 
 		public IActionResult AtualizaFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
