@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace FilmesAPI2.Controllers
 {
-	[ApiController]
+	[ApiController] // Define que a classe é um controller
 	[Route("[controller]")] // Define que a rota do controller é o nome da classe, sem o sufixo Controller, neste caso Filme.
-	public class FilmeController: ControllerBase
+	public class FilmeController: ControllerBase // Define que a classe FilmeController herda de ControllerBase
 	{
 		//private static List<Filme> filmes = new List<Filme>();
 		//private static int id = 0;
 		private FilmeContext _context; //: Este é um campo privado na classe FilmeController que armazenará uma instância do contexto do banco de dados FilmeContext.
-		private IMapper _mapper;
+		private IMapper _mapper; //: Este é um campo privado na classe FilmeController que armazenará uma instância do mapeador de objetos AutoMapper.
 
 
 		public FilmeController(FilmeContext context, IMapper mapper)
@@ -31,16 +31,16 @@ namespace FilmesAPI2.Controllers
 		/// <response code ="201"> Caso inserção seja feita com sucesso</response>
 		[HttpPost] // a partir desse momento, o método é um POST
 		[ProducesResponseType(201)]
-		public  IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDTO) //A notação [FromBody] indica que o parâmetro filme será passado no corpo da requisição
+		public IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDTO) //A notação [FromBody] indica que o parâmetro filme será passado no corpo da requisição
 		{
 			//filme.Id = ++id;
 			//filmes.Add(filme);  // Adiciona um filme
-			Filme filme = _mapper.Map<Filme>(filmeDTO);
+			Filme filme = _mapper.Map<Filme>(filmeDTO); // Converte o filmeDTO para um Filme
 			_context.Filmes.Add(filme);
 			_context.SaveChanges();
 			Console.WriteLine(filme.Titulo);
 			Console.WriteLine(filme.Duracao);
-			return CreatedAtAction(nameof(RetornaFilmePorID), new { id = filme.Id }, filme);
+			return CreatedAtAction(nameof(RetornaFilmePorID), new { id = filme.Id }, filme); //Retorna o status code 201 - Created, e o filme criado com um cabeçalho contendo a localização do recurso criado
 		}
 
 		/// <summary>

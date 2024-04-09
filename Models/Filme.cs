@@ -3,7 +3,7 @@
 namespace FilmesAPI2.Models
 {
 	//Os métodos devem ter os mesmos nomes dos atributos de parâmetros que serão passados no corpo da requisição.
-	public class Filme
+	public class Filme //Essa classe é um modelo de dados que representa um filme
 	{
 		[Key]
 		[Required]
@@ -20,5 +20,6 @@ namespace FilmesAPI2.Models
 		[Required]
 		[Range(70, 600, ErrorMessage ="A duração deve estar entre 70 e 600 minutos")] 
 		public double Duracao { get; set; }
+		public virtual ICollection<Sessao> Sessoes {get; set;} //Relacionamento com a tabela Sessao indicando que um filme pode ter várias sessões
 	}
 }

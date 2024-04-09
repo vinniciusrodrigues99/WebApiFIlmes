@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ModalGR\\Desktop\\Dev\\.NET\\FilmesAPI2\\FilmesAPI2\\FilmesAPI2.csproj": {}
+    "C:\\Users\\ModalGR\\Desktop\\Dev\\Trilha de .NET\\FilmesAPI2Finalizado\\FilmesAPI2\\FilmesAPI2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ModalGR\\Desktop\\Dev\\.NET\\FilmesAPI2\\FilmesAPI2\\FilmesAPI2.csproj": {
+    "C:\\Users\\ModalGR\\Desktop\\Dev\\Trilha de .NET\\FilmesAPI2Finalizado\\FilmesAPI2\\FilmesAPI2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ModalGR\\Desktop\\Dev\\.NET\\FilmesAPI2\\FilmesAPI2\\FilmesAPI2.csproj",
+        "projectUniqueName": "C:\\Users\\ModalGR\\Desktop\\Dev\\Trilha de .NET\\FilmesAPI2Finalizado\\FilmesAPI2\\FilmesAPI2.csproj",
         "projectName": "FilmesAPI2",
-        "projectPath": "C:\\Users\\ModalGR\\Desktop\\Dev\\.NET\\FilmesAPI2\\FilmesAPI2\\FilmesAPI2.csproj",
+        "projectPath": "C:\\Users\\ModalGR\\Desktop\\Dev\\Trilha de .NET\\FilmesAPI2Finalizado\\FilmesAPI2\\FilmesAPI2.csproj",
         "packagesPath": "C:\\Users\\ModalGR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ModalGR\\Desktop\\Dev\\.NET\\FilmesAPI2\\FilmesAPI2\\obj\\",
+        "outputPath": "C:\\Users\\ModalGR\\Desktop\\Dev\\Trilha de .NET\\FilmesAPI2Finalizado\\FilmesAPI2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ModalGR\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,6 +58,10 @@
               "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[6.0.10, )"
             },

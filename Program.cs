@@ -1,4 +1,5 @@
 using FilmesAPI2.Data;
+using FilmesAPI2.Data.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -7,7 +8,8 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FilmeConnection");
 
-builder.Services.AddDbContext<FilmeContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<FilmeContext>(opts => opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 // Add services to the container.
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -27,7 +29,7 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment()) //Se o ambiente for de desenvolvimento
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();

@@ -1,6 +1,6 @@
 ﻿namespace FilmesAPI2.Data.Dtos
 {
-	public class ReadFilmeDto
+	public class ReadFilmeDto //: Esta classe é um DTO (Data Transfer Object) que representa um filme que será retornado para o cliente.
 	{
 		public string Titulo { get; set; }
 
