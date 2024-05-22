@@ -10,5 +10,7 @@
 
 		public DateTime HoraDaConsulta { get; set; } = DateTime.Now; // Adicionando a hora da consulta
 
+		public ICollection<ReadSessaoDto> Sessoes { get; set; } // Adicionando a coleção de sessões
+
 	}
 }

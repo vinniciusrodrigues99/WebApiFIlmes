@@ -12,7 +12,7 @@ namespace FilmesAPI2.Profiles
         public CinemaProfiles()
         {
             CreateMap<CreateCinemaDto, Cinema>(); // Adicionando o mapeamento de CreateCinemaDto para Cinema
-            CreateMap<Cinema, ReadCinemaDto>().ForMember(cinemaDto => cinemaDto.Endereco, opt => opt.MapFrom(cinema => cinema.Endereco));
+            CreateMap<Cinema, ReadCinemaDto>().ForMember(cinemaDto => cinemaDto.Endereco, opt => opt.MapFrom(cinema => cinema.Endereco)).ForMember(sessaoDto => sessaoDto.Sessoes, opt=> opt.MapFrom(sessao => sessao.Sessoes));
 			CreateMap<UpdateCinemaDto, Cinema>(); // Adicionando o mapeamento de Cinema para UpdateCinemaDto
             CreateMap<Cinema, UpdateCinemaDto>(); // É usado quando você quer enviar uma instância de Filme como resposta para o cliente
         }

@@ -11,7 +11,7 @@ namespace FilmesAPI2.Profiles
 			CreateMap<CreateFilmeDto, Filme>();
 			CreateMap<UpdateFilmeDto, Filme>(); // É usado quando você tem uma instância de UpdateFilmeDto (provavelmente vindo de uma solicitação do cliente) e você quer mapeá-la para uma instância de Filme para, por exemplo, atualizar um filme no banco de dados.
 			CreateMap<Filme, UpdateFilmeDto>(); // É usado quando você quer enviar uma instância de Filme como resposta para o cliente
-			CreateMap<Filme, ReadFilmeDto>();
+			CreateMap<Filme, ReadFilmeDto>().ForMember(filmeDto=> filmeDto.Sessoes, opt => opt.MapFrom(filme => filme.Sessoes));
 		}
 	}
 }

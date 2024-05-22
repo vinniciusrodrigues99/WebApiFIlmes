@@ -23,7 +23,6 @@ namespace FilmesAPI2.Data.Dtos
         [StringLength(8, ErrorMessage = "O CEP deve ter 8 caracteres")]
         public string Cep {get; set;}
         public DateTime HoraConsulta {get; set;} = DateTime.Now;
-
-        public string Cinema { get; set; } //Propriedade de cinema
+        public string NomeCinema { get; set; } //Propriedade de cinema
     }
 }

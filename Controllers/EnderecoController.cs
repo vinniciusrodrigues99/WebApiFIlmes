@@ -33,7 +33,7 @@ namespace FilmesAPI2.Controllers
         [HttpGet]
         public IEnumerable <ReadEnderecoDto> RetornaEnderecos([FromQuery] int skip = 0, [FromQuery] int take = 50)
         {
-            return _mapper.Map<List<ReadEnderecoDto>>(_context.Enderecos.Skip(skip).Take(take));
+            return _mapper.Map<List<ReadEnderecoDto>>(_context.Enderecos.Skip(skip).Take(take).ToList());
         }
         [HttpGet("{id}")]
         public IActionResult RetornaEnderecoPorId(int id)

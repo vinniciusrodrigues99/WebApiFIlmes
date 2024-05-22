@@ -13,7 +13,7 @@ namespace FilmesAPI2.Profiles
         public EnderecoProfiles()
         {
             CreateMap<CreateEnderecoDto, Endereco>(); // Adicionando o mapeamento de CreateEnderecoDto para Endereco
-            CreateMap<Endereco, ReadEnderecoDto>();
+            CreateMap<Endereco, ReadEnderecoDto>().ForMember(enderecoDto => enderecoDto.NomeCinema, opt=> opt.MapFrom(endereco => endereco.Cinema.NomeCinema));
             CreateMap<UpdateEnderecoDto, Endereco>();
             CreateMap<Endereco, UpdateEnderecoDto>(); 
         }

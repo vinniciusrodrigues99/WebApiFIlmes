@@ -27,13 +27,13 @@ namespace FilmesAPI2.Controllers
         Sessao sessao = _mapper.Map<Sessao>(sessaoDto); //Convertendo sessaoDto para sessao
         _contextSessao.Sessoes.Add(sessao);
         _contextSessao.SaveChanges();
-        return CreatedAtAction(nameof(RetornaSessoesPorID), new {Id = sessao.Id}, sessao);
+        return CreatedAtAction(nameof(RetornaSessoesPorID), new {Id = sessao.FilmeId, cinemaId = sessao.CinemaId}, sessao);
         }
 
-        [HttpGet("{id}")] //Retorna sessao por ID
-        public IActionResult RetornaSessoesPorID([FromQuery]int id)
+        [HttpGet("{filmeId}/{cinemaId}")] //Retorna sessao por ID
+        public IActionResult RetornaSessoesPorID(int filmeId, int cinemaId)
         {
-            Sessao sessao = _contextSessao.Sessoes.FirstOrDefault(sessao => sessao.Id == id);
+            Sessao sessao = _contextSessao.Sessoes.FirstOrDefault(sessao => sessao.FilmeId == filmeId && sessao.CinemaId == cinemaId);
             if(sessao == null)
             return NotFound("Sessão não encontrada");
             CreateCinemaDto sessaoDto = _mapper.Map<CreateCinemaDto>(sessao); //Converte uma sessao para uma sessaoDto

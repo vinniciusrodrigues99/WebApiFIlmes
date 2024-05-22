@@ -37,7 +37,7 @@ namespace FilmesAPI2.Migrations
                     b.HasIndex("EnderecoId")
                         .IsUnique();
 
-                    b.ToTable("Cinemas", (string)null);
+                    b.ToTable("Cinemas");
                 });
 
             modelBuilder.Entity("FilmesAPI2.Models.Endereco", b =>
@@ -73,7 +73,7 @@ namespace FilmesAPI2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Enderecos", (string)null);
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("FilmesAPI2.Models.Filme", b =>
@@ -101,16 +101,15 @@ namespace FilmesAPI2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Filmes", (string)null);
+                    b.ToTable("Filmes");
                 });
 
             modelBuilder.Entity("FilmesAPI2.Models.Sessao", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("FilmeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FilmeId")
+                    b.Property<int?>("CinemaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("HorarioDeInicio")
@@ -119,11 +118,11 @@ namespace FilmesAPI2.Migrations
                     b.Property<DateTime>("HorarioDeTermino")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FilmeId", "CinemaId");
 
-                    b.HasIndex("FilmeId");
+                    b.HasIndex("CinemaId");
 
-                    b.ToTable("Sessoes", (string)null);
+                    b.ToTable("Sessoes");
                 });
 
             modelBuilder.Entity("FilmesAPI2.Models.Cinema", b =>
@@ -139,13 +138,26 @@ namespace FilmesAPI2.Migrations
 
             modelBuilder.Entity("FilmesAPI2.Models.Sessao", b =>
                 {
+                    b.HasOne("FilmesAPI2.Models.Cinema", "Cinema")
+                        .WithMany("Sessoes")
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FilmesAPI2.Models.Filme", "Filme")
                         .WithMany("Sessoes")
                         .HasForeignKey("FilmeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Cinema");
+
                     b.Navigation("Filme");
+                });
+
+            modelBuilder.Entity("FilmesAPI2.Models.Cinema", b =>
+                {
+                    b.Navigation("Sessoes");
                 });
 
             modelBuilder.Entity("FilmesAPI2.Models.Endereco", b =>

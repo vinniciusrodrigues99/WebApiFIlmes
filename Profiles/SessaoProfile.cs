@@ -12,8 +12,8 @@ namespace FilmesAPI2.Profiles
         public SessaoProfile()
         { 
             CreateMap<CreateSessaoDto, Sessao>(); // Adicionando o mapeamento de CreateSessaoDto para Sessao
-            CreateMap<ReadSessaoDto, Sessao>(); // Adicionando o mapeamento de Sessao para ReadSessaoDto
-            CreateMap<Sessao, ReadSessaoDto>();
+            CreateMap<ReadSessaoDto, Sessao>();// Adicionando o mapeamento de Sessao para ReadSessaoDto
+            CreateMap<Sessao, ReadSessaoDto>().ForMember(sessaoDto => sessaoDto.NomeCinema, opt=> opt.MapFrom(sessao => sessao.Cinema.NomeCinema)); 
         }
     }
 }

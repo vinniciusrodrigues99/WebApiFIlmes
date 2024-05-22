@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmesAPI2.Migrations
 {
     [DbContext(typeof(FilmeContext))]
-    [Migration("20240408192102_Relacionamento entre Sessão e Filme")]
-    partial class RelacionamentoentreSessãoeFilme
+    [Migration("20240416004901_Cinema e Filme")]
+    partial class CinemaeFilme
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,11 +108,10 @@ namespace FilmesAPI2.Migrations
 
             modelBuilder.Entity("FilmesAPI2.Models.Sessao", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("FilmeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FilmeId")
+                    b.Property<int?>("CinemaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("HorarioDeInicio")
@@ -121,9 +120,9 @@ namespace FilmesAPI2.Migrations
                     b.Property<DateTime>("HorarioDeTermino")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FilmeId", "CinemaId");
 
-                    b.HasIndex("FilmeId");
+                    b.HasIndex("CinemaId");
 
                     b.ToTable("Sessoes");
                 });
@@ -141,13 +140,26 @@ namespace FilmesAPI2.Migrations
 
             modelBuilder.Entity("FilmesAPI2.Models.Sessao", b =>
                 {
+                    b.HasOne("FilmesAPI2.Models.Cinema", "Cinema")
+                        .WithMany("Sessoes")
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FilmesAPI2.Models.Filme", "Filme")
                         .WithMany("Sessoes")
                         .HasForeignKey("FilmeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Cinema");
+
                     b.Navigation("Filme");
+                });
+
+            modelBuilder.Entity("FilmesAPI2.Models.Cinema", b =>
+                {
+                    b.Navigation("Sessoes");
                 });
 
             modelBuilder.Entity("FilmesAPI2.Models.Endereco", b =>
